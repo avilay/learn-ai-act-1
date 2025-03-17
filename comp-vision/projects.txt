@@ -1,0 +1,38 @@
+[*] neuralnet-bikes
+[*] neuralnet-imdb
+[*] softmax-mnist
+softmax-notmnist
+[*] nn-mnist
+cnn-mnist
+cnn-cifar
+cnn-roadsigns
+deepnn-mnist
+lenet-mnist
+
+Variable naming conventions:
+M -> matrix placeholder/Variable tensor
+v -> vector placeholder/Variable tensor
+σ -> scalar placeholder/Variable tensor
+f_out -> output of a function tensor f
+x_obj -> instance of placeholder/Variable tensor x
+
+
+TODO: Keras
+===========
+[*] 1. Guide to sequential models
+https://keras.io/getting-started/sequential-model-guide/
+
+[*] 2. Example: cifar10_cnn.py
+
+[*] 3. Example: mnist_cnn.py
+
+[*] 4. Example: mnist_mpl.py
+
+[*] 5. Example: mnist_transfer_cnn.py
+
+6. FAQs
+https://keras.io/getting-started/faq/
+
+7. Transfer Learning
+https://keras.io/applications/
+

@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../learn-pytorch"
+		},
+		{
+			"path": "../learn-pytorch-lightning"
+		},
+		{
+			"path": "../../../cloned/pytorch-lightning"
+		}
+	],
+	"settings": {}
+}
