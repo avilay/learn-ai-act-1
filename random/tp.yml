@@ -1,0 +1,10 @@
+- !!python/object:__main__.Cookie
+  calories: 200
+  flavor: Chocolate Chip
+- !!python/object:__main__.Cookie
+  calories: 180
+  flavor: Snicker Doodle
+- !!python/object:__main__.Cookie
+  calories: 120
+  flavor: Oatmeal Raisin
+

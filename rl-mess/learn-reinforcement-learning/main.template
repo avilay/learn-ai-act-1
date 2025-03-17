@@ -1,0 +1,88 @@
+"""{NAME}.
+
+Usage:
+  {cmd} train ENV --hparams=<hparams> --runid=<runid> [--net=<net>]
+  {cmd} play ENV [--net=<net>]
+  {cmd} (-h | --help)
+
+Arguments:
+  ENV   Environment name.
+
+Options:
+  -h --help             Show this screen.
+  --hparams=<hparams>   Hyper parameters file in .ini format.
+  --runid=<runid>       Any unique string to identify the tensorboard and checkpoint files.
+  --net=<pnet>          Weights file of the trained network.
+"""
+from collections import deque, namedtuple
+from configparser import ConfigParser
+import logging
+import os
+
+import gym
+import numpy as np
+import tensorflow as tf
+from docopt import docopt
+
+from utils import player
+
+
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"  # FATAL
+logging.getLogger("tensorflow").setLevel(logging.FATAL)
+
+Hyperparams = namedtuple("Hyperparams", ["mini_batch_size", "num_iters", "learning_rate"])
+
+def load_hparams(filename):
+    config = ConfigParser()
+    config.read(filename)
+    default = config["DEFAULT"]
+    return Hyperparams(
+        mini_batch_size=default.getint("MiniBatchSize"),
+        num_iters=default.getint("NumIters"),
+        learning_rate=default.getfloat("LearningRate"),
+    )
+
+
+def play(envname, net_file=None):
+
+    def policy(state):
+        # Implement policy
+
+    player.play(env, policy)
+
+
+def train(runid, envname, hparams_file, net_file=None):
+    hparams = load_hparams(hparams_file)
+    print(f"Starting run {runid} with the following hyper parameters:")
+    print(hparams)
+
+    env = gym.make(envname)
+
+    # Other initialization here
+
+    tbfile = f"logs/{cmd}-{env.spec.id}-{runid}.tb"
+    print(f"Writing tensorboard metrics to {tbfile}.")
+    writer = tf.summary.create_file_writer(tbfile)
+    with writer.as_default():
+        for i in range(hparams.num_iters):
+            try:
+                # Implement main train loop here
+            except KeyboardInterrupt:
+                print("\nStopping training.")
+                break
+
+    filename = f"logs/{cmd}-{env.spec.id}-{runid}-{i}-net.tf"
+    net.save_weights(filename, save_format="tf")
+    print(f"Model weights saved as {filename}")
+
+
+def main():
+    args = docopt(__doc__, version="{NAME} 1.0")
+    if args["train"]:
+        train(args["--runid"], args["ENV"], args["--hparams"], args["--pnet"])
+    elif args["play"]:
+        play(args["ENV"], args["--pnet"])
+
+
+if __name__ == "__main__":
+    main()

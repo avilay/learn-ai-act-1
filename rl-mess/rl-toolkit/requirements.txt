@@ -1,0 +1,9 @@
+pytest
+numpy
+mypy
+flake8
+haikunator
+matplotlib
+IPython
+avilabs-ml-metrics
+avilabs-plotter
