@@ -1,0 +1,117 @@
+Multidimensional arrays
+=======================
+A 2-D array can be thought of as a matrix. But then how to think about 3-D or 4-D arrays?
+
+y = array([[[   1,    2],
+          [  30,   40]],
+
+          [[ 500,  600],
+          [7000, 8000]]])
+
+y is a 3-D array. Its best to think of it as a 2x2 matrix (first two dims), with each element being an array of size 2. Looking at the printout above one is tempted to think of it as a column vector of size 2, with each element being a 2x2 matrix. This is not correct. Here is how the correct visualization this would look -
+
+y = [[1,   2],   [30,   40],
+     [500, 600], [7000, 8000]]
+
+So, y[0, 0, 1] means, interpret the first 2 indices as row, col of the matrix, i.e., y[0, 0] represents [1, 2]. And then the last index keys into the element which happens to be an array. So [1] keys into [1, 2], i.e., 2.
+
+y[0, 0, 1] = 2
+
+The number of dimensions of y is 3. This means that one needs 3 "addresses" to uniquely identify a single element in y. Or, in terms of a dataset, if y is the output variable, there are 3 input columns - x0, x1, and x2. So another way of thinking of this 3-D array is as follows -
+
+x0  x1  x2  y
+----------------
+0   0   0   1
+0   0   1   2
+0   1   0   30
+0   1   1   40
+1   0   0   500
+1   0   1   600
+1   1   0   7000
+1   1   1   8000
+
+Indices are really to easy to interpret in this model, y[0, 0, 1] is simply y(x0=0 x1=0, x2=1) = 2.
+
+In summary, multidim arrays can be thought of either in terms of matrix, or in terms of a dataset.
+
+Concept of axis
+===============
+Unidim arrays
+-------------
+Unidim arrays have only a single axis, denoted by axis 0. So all the elements of axis 0 are the elements of the array itself. Axis 1 does not exist. So 0th element of axis 0 is the 0th element of the array.
+
+2-D arrays
+----------
+A = [[1, 2],
+     [3, 4]]
+
+Axis 0 = 0 are A[0, i] for all values of i, i.e.,
+    [1, 2]
+
+Axis 1 = 0 are A[i, 0] for all values of i, i.e.,
+    [1],
+    [3]
+
+So really we can think of axis 0 as rows and axis 1 as cols.
+
+Multidim arrays as datasets
+---------------------------
+This is the easisest way to understand axis. Axis 0 is simply x0, axis 1 is x1, and so on. For example what are the elements where the value of axis0 is 0? Ans: [1, 2, 30, 40]. What are the elements where the value of axis1=0? Ans: [1, 2, 500, 600]. What are the elements where the value of axis2=1? Ans: [2, 40, 600, 8000]
+
+Multidim arrays as matrix
+-------------------------
+Axis 0 corresponds to the first index. Elements where axis 0 is set to 0 are really -
+    y[0, i, j] for all possible values of i and j.
+In matrix repr this translates to all elements of row 0 (remember y[r, c, i] is the ith element of the (r,c)th element of the matrix). This is -
+    [1,   2],   [30,   40]
+
+Axis 1 corresponds to the second index. Elements where axis 1 is set to 0 are really -
+    y[i, 0, j] for all possible values of i and j.
+In matrix repr this translates to all elements of col 0. This is -
+     [1,   2]
+     [500, 600]
+
+Axis 2 corresponds to the third index. Elements where axis 2 is set to 0 are really -
+    y[i, j, 0] for all possible values of i and j.
+In matrix repr this translates to the 0th element of all the elements of the matrix. This is -
+    [[1],   [30],
+     [500], [7000]]
+
+
+Functions that take axis as input
+=================================
+np.sum(y, axis=0)
+[[ 501,  602],
+ [7030, 8040]]
+
+np.sum(A, axis=0)
+[4, 6]
+
+2-D
+---
+axis 0 for a 2-D array are really the rows. Asking numpy to sum "along axis 0" is simply telling it to take axis0=0 and axis0=1 and then sum both the arrays together.
+
+A[axis0=0] = [1, 2]
+A[axis0=1] = [3, 4]
+
+Sum of these two arrays is [4, 6].
+
+Looking at this closely we can think of summing along axis0 as summing all the *cols* up. Similarly we can think of summing along axis1 as summing up all the *rows* up. However, this is at odds with all other concepts. In summary it is best to think of this as - take each row as an array, then sum both the arrays.
+
+As dataset
+----------
+np.sum(axis=0) is telling numpy to "group by" everything other than axis0.
+    select x1, x2, sum(y) from matrix group by x1, x2;
+
+    x1  x2  sum
+    ------------
+    0   0   501
+    0   1   602
+    1   0   7030
+    1   1   8040
+
+As matrix
+---------
+np.sum(axis=0) is telling numpy to vary the 0th dim keeping the other 2 dims constant.
+    SUM(y[i, 0, 0]), SUM(y[i, 0, 1])
+    SUM(y[i, 1, 0]), SUM(y[i, 1, 1])

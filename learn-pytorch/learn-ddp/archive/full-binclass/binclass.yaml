@@ -1,0 +1,19 @@
+app:
+  name: ddp-full-binclass
+  dataroot: /Users/avilay/mldata/generated/binclass/10M
+  task: ???
+
+train:
+  log_frequency: 1
+  optimizer: Adam
+  hparams:
+    n_epochs: 5
+    batch_size: 32
+    lr: 0.001
+
+test:
+  checkpoint: ???
+
+hydra:
+  run:
+    dir: /Users/avilay/mlruns/${app.name}/${now:%Y-%m-%d}/${now:%H-%M}

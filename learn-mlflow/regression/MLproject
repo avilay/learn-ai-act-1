@@ -1,0 +1,8 @@
+name: tutorial
+
+entry_points:
+  main:
+    parameters:
+      alpha: float
+      l1_ratio: {type: float, default: 0.1}
+    command: "python sklearn_train.py {alpha} {l1_ratio}"

@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../learn-pytorch"
+		},
+		{
+			"path": "../../../gitlab/torchutils"
+		},
+		{
+			"path": "../../../cloned/jax/jax/example_libraries"
+		},
+		{
+			"path": "../../../cloned/jax/examples"
+		}
+	],
+	"settings": {}
+}

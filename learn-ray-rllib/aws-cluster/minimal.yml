@@ -1,0 +1,5 @@
+cluster_name: minimal
+
+provider:
+  type: aws
+  region: us-west-2

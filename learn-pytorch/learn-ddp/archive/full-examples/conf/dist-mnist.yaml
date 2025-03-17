@@ -1,0 +1,34 @@
+cmd: ???
+checkpoint: ???
+log_frequency: 1
+hparams:
+  lr: 0.001
+  momentum: 0.9
+  batch_size: 128
+  epochs: 3
+  dropouts: [0.25, 0.5]
+  optim:
+    class_name: SGD
+    args:
+      lr: 0.001
+      momentum: 0.9
+
+dist:
+  master:
+    addr: 127.0.0.1
+    port: 29500
+  world: 2
+  rank: ???
+  devices: [
+    "cuda:0",
+    "cuda:1"
+  ]
+
+hydra:
+  run:
+    dir: /home/avilay/mlruns/dist-mnist/${now:%Y-%m-%d}/${now:%H-%M}/
+  job_logging:
+    formatters:
+      simple:
+        format: '[%(asctime)s][%(levelname)s] - %(message)s'
+        datefmt: '%H:%M:%S'

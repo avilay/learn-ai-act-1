@@ -1,0 +1,9 @@
+cluster_name: snippets
+
+provider:
+  type: aws
+  region: us-west-2
+
+setup_commands:
+  - pip install -U ray
+  - pip install -U avilabs-snippets

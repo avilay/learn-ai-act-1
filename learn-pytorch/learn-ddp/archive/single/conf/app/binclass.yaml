@@ -1,0 +1,10 @@
+name: binclass
+datadir: binclass
+hparams:
+  epochs: 3
+  batch_size: 32
+  lr: 0.01
+  optim:
+    class_name: Adam
+    args:
+      lr: 0.01

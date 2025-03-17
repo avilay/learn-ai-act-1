@@ -1,0 +1,5 @@
+job:
+  master_addr: ???
+  master_port: 29500
+  rank: 0
+  world_size: 2

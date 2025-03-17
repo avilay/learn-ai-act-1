@@ -1,0 +1,21 @@
+cmd: ???
+checkpoint: ???
+log_frequency: 1
+device: cpu
+
+hparams:
+  epochs: 3
+  batch_size: 32
+  optim:
+    class_name: Adam
+    args:
+      lr: 0.01
+
+hydra:
+  run:
+    dir: /Users/avilay/mlruns/single-binclass/${now:%Y-%m-%d}/${now:%H-%M}
+  job_logging:
+    formatters:
+      simple:
+        format: '[%(asctime)s][%(levelname)s] - %(message)s'
+        datefmt: '%H:%M:%S'

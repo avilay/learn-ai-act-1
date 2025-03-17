@@ -1,0 +1,28 @@
+# outurl has to be of the form file:///path/to/dir/ or gs://bucket/prefix/
+outurl: ???
+
+# The number of partitions for each of train, val, and test files.
+n_parts: 1
+
+# Samples config
+n_samples: 10000
+train_split: 0.8
+test_split: 0.1
+
+# Features config
+# Informative features are real features
+# Redundant featuers are linear combinations of random informative features
+# Repeated features are randomly selected from informative and repeated features
+# The remaining features, i.e., n_features - n_informative - n_redundant - n_repeated are useless
+n_features: 5
+n_informative: 5
+n_redundant: 0
+n_repeated: 0
+
+# Classification task difficulty
+# Higher values of flip_y makes classification more difficult
+# Lower values of class_sep also makes classification more difficult
+flip_y: 0.01
+class_sep: 1.0
+
+random_state: 10

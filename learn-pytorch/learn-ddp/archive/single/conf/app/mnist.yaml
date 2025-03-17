@@ -1,0 +1,13 @@
+name: mnist
+datadir: mnist
+hparams:
+  lr: 0.001
+  momentum: 0.9
+  batch_size: 128
+  epochs: 3
+  dropouts: [0.25, 0.5]
+  optim:
+    class_name: SGD
+    args:
+      lr: 0.001
+      momentum: 0.9
