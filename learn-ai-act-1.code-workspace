@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../learn-ai-act-2"
+		},
+		{
+			"path": "../../scratch/py"
+		},
+		{
+			"path": "../../zero-to-hero-ml"
+		}
+	],
+	"settings": {}
+}
